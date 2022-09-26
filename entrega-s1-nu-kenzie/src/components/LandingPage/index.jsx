@@ -1,5 +1,5 @@
-import "./index.css";
-import logo from "../../assets/Nu Kenzie.svg";
+import "./style.css";
+import logo from "../../assets/NuKenzie.svg";
 import ilustration from "../../assets/illustration.svg";
 import { useState } from "react";
 

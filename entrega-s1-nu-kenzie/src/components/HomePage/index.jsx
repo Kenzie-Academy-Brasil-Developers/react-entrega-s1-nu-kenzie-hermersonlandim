@@ -1,4 +1,4 @@
-import "./index.css";
+import "./style.css";
 import logo from "../../assets/NuKenzie2.svg";
 import lixeira from "../../assets/lixeira.svg";
 import { useState } from "react";
@@ -115,7 +115,7 @@ const HomePage = ({ setRendle }) => {
             <div>
               <h3>Resumo Financeiro</h3>
               <button className="btn-primary">Todos</button>
-              <button className="btn-secundary" onClick={handleInput}>
+              <button className="btn-secundary" onClick={() => handleInput}>
                 Entradas
               </button>
               <button className="btn-secundary">Despesas</button>
