@@ -43,7 +43,7 @@ const HomePage = ({ setRendle }) => {
       </header>
 
       <main>
-        <div className="container-home">
+        <div className="container-home mediaQuery">
           <div>
             <form onSubmit={rendleSubmit}>
               <div className="setDescription">
@@ -122,7 +122,7 @@ const HomePage = ({ setRendle }) => {
             </div>
             <div className="releases">
               {cards.length === 0 ? (
-                <h3>Ainda não possui nenhum lançamento</h3>
+                <h3>Você ainda não possui nenhum lançamento</h3>
               ) : (
                 <div className="card-finances">
                   {cards.map((elem, index) => (

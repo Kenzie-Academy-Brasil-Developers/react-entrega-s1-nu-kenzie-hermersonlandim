@@ -88,7 +88,8 @@ div.container-home table tr:nth-child(1) th + th {
   width: 100%;
 }
 
-section.finances div {
+section.finances {
+  margin-top: 1.5rem;
 }
 
 section.finances > div:nth-child(1) button {
@@ -97,6 +98,7 @@ section.finances > div:nth-child(1) button {
 }
 
 div.releases {
+  margin-top: 1rem;
 }
 
 div.releases h3:nth-child(1) {
@@ -136,4 +138,22 @@ div.card-finances > div > div > button {
 
 div.card-finances > div > div > button > img {
   height: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .mediaQuery {
+    display: flex;
+    justify-content: space-around;
+  }
+  section.finances {
+    width: 50%;
+  }
+  section.finances > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  div.releases {
+  }
 }
