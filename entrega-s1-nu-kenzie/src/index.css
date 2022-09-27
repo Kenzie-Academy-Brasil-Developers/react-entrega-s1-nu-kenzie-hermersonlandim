@@ -97,6 +97,7 @@ h3{
   font-weight: var(--weight800);
   font-size: var(--size16);
   line-height: var(--line30);
+  width: 40%;
 }
 
 h4{

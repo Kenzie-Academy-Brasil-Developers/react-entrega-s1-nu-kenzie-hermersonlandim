@@ -2,10 +2,11 @@ import "./style.css";
 import logo from "../../assets/NuKenzie2.svg";
 import lixeira from "../../assets/lixeira.svg";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const HomePage = ({ setRendle }) => {
   const [cards, setCards] = useState([]);
-  const [selected, setSelected] = useState(cards);
+  const [selected, setSelected] = useState([]);
   const [description, setDescription] = useState("");
   const [value, setValue] = useState("");
   const [typeValue, setTypeValue] = useState("");
@@ -16,17 +17,45 @@ const HomePage = ({ setRendle }) => {
 
   const rendleSubmit = (event) => {
     event.preventDefault();
+
+    setSelected((previousSelect) => {
+      return [...previousSelect, { description, value, typeValue }];
+    });
     setCards((previousCard) => {
       return [...previousCard, { description, value, typeValue }];
     });
     setDescription("");
     setValue("");
     setTypeValue("");
+    notify(`Adicionado ${typeValue} de ${value} com sucesso!`);
   };
 
-  const handleInput = () => {
-    const cardsFiltereds = cards.filter((elem) => elem.typeValue === "Entrada");
+  const handleInput = (value) => {
+    const cardsFiltereds = cards.filter(
+      (elem) => elem.typeValue === value || value === "Todos"
+    );
     console.log(cardsFiltereds);
+    setSelected(cardsFiltereds);
+  };
+
+  const remove = (id) => {
+    const cardsFiltereds = cards.filter((elem, index) => id !== index);
+    console.log(cardsFiltereds);
+    setCards(cardsFiltereds);
+    setSelected(cardsFiltereds);
+    notify("Removido com Sucesso!");
+  };
+
+  const notify = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
@@ -55,6 +84,7 @@ const HomePage = ({ setRendle }) => {
                   className="inptut-global"
                   onChange={(event) => setDescription(event.target.value)}
                   value={description}
+                  required="true"
                 />
                 <span>Ex: Compra de roupas</span>
               </div>
@@ -69,6 +99,7 @@ const HomePage = ({ setRendle }) => {
                     className="inptut-global"
                     onChange={(event) => setValue(event.target.value)}
                     value={typeValue === "Saída" ? value * -1 : value}
+                    required="true"
                   />
                 </div>
 
@@ -79,9 +110,6 @@ const HomePage = ({ setRendle }) => {
                     onChange={(event) => setTypeValue(event.target.value)}
                     value={typeValue}
                   >
-                    <option value="Selecione o tipo de valor">
-                      Tipo de valor
-                    </option>
                     <option value="Entrada">Entrada</option>
                     <option value="Saída">Saída</option>
                   </select>
@@ -96,13 +124,16 @@ const HomePage = ({ setRendle }) => {
                 <tr>
                   <th>Valor Total:</th>
                   <tr>
-                    {cards.reduce(
-                      (previous, current) =>
-                        current.typeValue === "Saída"
-                          ? previous + parseInt(current.value) * -1
-                          : previous + parseInt(current.value),
-                      0
-                    )}
+                    R$
+                    {selected
+                      .reduce(
+                        (previous, current) =>
+                          current.typeValue === "Saída"
+                            ? previous + parseInt(current.value) * -1
+                            : previous + parseInt(current.value),
+                        0
+                      )
+                      .toFixed(2)}
                   </tr>
                 </tr>
               </thead>
@@ -114,18 +145,34 @@ const HomePage = ({ setRendle }) => {
           <section className="finances">
             <div>
               <h3>Resumo Financeiro</h3>
-              <button className="btn-primary">Todos</button>
-              <button className="btn-secundary" onClick={() => handleInput}>
+              <button
+                className="btn-primary"
+                value="Todos"
+                onClick={(event) => handleInput(event.target.value)}
+              >
+                Todos
+              </button>
+              <button
+                className="btn-secundary"
+                value="Entrada"
+                onClick={(event) => handleInput(event.target.value)}
+              >
                 Entradas
               </button>
-              <button className="btn-secundary">Despesas</button>
+              <button
+                className="btn-secundary"
+                value="Saída"
+                onClick={(event) => handleInput(event.target.value)}
+              >
+                Despesas
+              </button>
             </div>
             <div className="releases">
-              {cards.length === 0 ? (
+              {selected.length === 0 ? (
                 <h3>Você ainda não possui nenhum lançamento</h3>
               ) : (
                 <div className="card-finances">
-                  {cards.map((elem, index) => (
+                  {selected.map((elem, index) => (
                     <div
                       className={elem.typeValue === "Saída" ? "expense" : ""}
                       key={index}
@@ -133,11 +180,12 @@ const HomePage = ({ setRendle }) => {
                       <div>
                         <h3>{elem.description}</h3>
                         <span>
+                          R$
                           {elem.typeValue === "Saída"
-                            ? `-${elem.value}`
-                            : elem.value}
+                            ? parseInt(elem.value * -1).toFixed(2)
+                            : parseInt(elem.value).toFixed(2)}
                         </span>
-                        <button>
+                        <button onClick={() => remove(index)} id={index}>
                           <img src={lixeira} alt="Remover" />
                         </button>
                       </div>
