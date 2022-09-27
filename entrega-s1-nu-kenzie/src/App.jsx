@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import HomePage from "./components/HomePage";
 import LandingPage from "./components/LandingPage";
 import { ToastContainer } from "react-toastify";

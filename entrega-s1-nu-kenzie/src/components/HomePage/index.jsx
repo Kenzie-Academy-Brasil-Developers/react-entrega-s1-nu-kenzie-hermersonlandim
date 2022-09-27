@@ -21,9 +21,11 @@ const HomePage = ({ setRendle }) => {
     setSelected((previousSelect) => {
       return [...previousSelect, { description, value, typeValue }];
     });
+    console.log(selected);
     setCards((previousCard) => {
       return [...previousCard, { description, value, typeValue }];
     });
+    console.log(cards);
     setDescription("");
     setValue("");
     setTypeValue("");
@@ -31,6 +33,7 @@ const HomePage = ({ setRendle }) => {
   };
 
   const handleInput = (value) => {
+    console.log(value);
     const cardsFiltereds = cards.filter(
       (elem) => elem.typeValue === value || value === "Todos"
     );
@@ -110,8 +113,24 @@ const HomePage = ({ setRendle }) => {
                     onChange={(event) => setTypeValue(event.target.value)}
                     value={typeValue}
                   >
-                    <option value="Entrada">Entrada</option>
-                    <option value="Saída">Saída</option>
+                    <option
+                      value=""
+                      onChange={(event) => setTypeValue(event.target.value)}
+                    >
+                      Selecione o tipo
+                    </option>
+                    <option
+                      value="Entrada"
+                      onChange={(event) => setTypeValue(event.target.value)}
+                    >
+                      Entrada
+                    </option>
+                    <option
+                      value="Saída"
+                      onChange={(event) => setTypeValue(event.target.value)}
+                    >
+                      Saída
+                    </option>
                   </select>
                 </div>
               </div>

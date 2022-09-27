@@ -101,14 +101,6 @@ div.releases {
   margin-top: 1rem;
 }
 
-div.releases h3:nth-child(1) {
-  /* text-align: center; */
-}
-
-div.card-finances {
-  /* display: flex; */
-}
-
 div.card-finances div div {
   display: flex;
   align-items: center;
@@ -117,7 +109,6 @@ div.card-finances div div {
 }
 
 div.card-finances > div {
-  /* margin-bottom: 1rem; */
   margin-top: 1rem;
   padding: 0.7rem;
 
@@ -152,8 +143,5 @@ div.card-finances > div > div > button > img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  div.releases {
   }
 }

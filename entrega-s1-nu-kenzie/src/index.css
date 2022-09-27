@@ -42,19 +42,19 @@ figure {
   /*Title 1 (h1)*/
   --weight800: 800;
   --size28: 28px;
-  --line48: 48px
+  --line48: 48px;
   /*Title 2 (h2)*/
   --weight700: 700;
   --size24: 28px;
-  --line34: 34px
+  --line34: 34px;
   /*Title 3 (h3)*/
   /* --weight600: 800;*/
   --size28: 16px;
-  --line30: 30px
+  --line30: 30px;
   /*Title 4 (h4)*/
   --weight600: 600;
   --size12: 12px;
-  --line26: 26px
+  --line26: 26px;
 
   /*Headline (p)*/
   --weight400: 400;
@@ -64,7 +64,7 @@ figure {
   /*body (span)*/
   /* --weight400: 400; */
   --size12: 12px;
-  --line22: 22px
+  --line22: 22px;
 }
 
 .dark-mode:root {
@@ -81,46 +81,46 @@ figure {
   --input-bg: ##616162;
 }
 
-h1{
+h1 {
   font-weight: var(--weight800);
   font-size: var(--size28);
   line-height: var(--line48);
 }
 
-h2{
+h2 {
   font-weight: var(--weight700);
   font-size: var(--size28);
   line-height: var(--line34);
 }
 
-h3{
+h3 {
   font-weight: var(--weight800);
   font-size: var(--size16);
   line-height: var(--line30);
   width: 40%;
 }
 
-h4{
+h4 {
   font-weight: var(--weight600);
   font-size: var(--size12);
   line-height: var(--line26);
 }
 
-p{
+p {
   font-weight: var(--weight400);
   font-size: var(--size16);
   line-height: var(--line26);
 }
 
-span, tfoot{
+span,
+tfoot {
   font-weight: var(--weight400);
   font-size: var(--size12);
   line-height: var(--line22);
 }
 
-.btn-primary{
+.btn-primary {
   cursor: pointer;
-
 
   border: 1px solid transparent;
   border-radius: 10px;
@@ -133,12 +133,12 @@ span, tfoot{
   line-height: var(--line22);
 }
 
-.btn-secundary{
+.btn-secundary {
   cursor: pointer;
 
   border: 1px solid transparent;
   border-radius: 10px;
-  padding: .5rem;
+  padding: 0.5rem;
 
   color: var(--grey-3);
   background-color: var(--grey-2);
@@ -148,15 +148,14 @@ span, tfoot{
   line-height: var(--line22);
 }
 
-.inptut-global{
-  padding: .7rem .5rem .7rem .5rem;
+.inptut-global {
+  padding: 0.7rem 0.5rem 0.7rem 0.5rem;
   border: 1px solid transparent;
   border-radius: 10px;
 
   background-color: var(--grey-2);
   outline: 0;
 }
-
 
 body {
   background-color: var(--grey-1);
