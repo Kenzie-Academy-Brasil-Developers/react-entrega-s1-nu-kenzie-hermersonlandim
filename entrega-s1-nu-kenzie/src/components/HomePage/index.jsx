@@ -21,37 +21,47 @@ const HomePage = ({ setRendle }) => {
     setSelected((previousSelect) => {
       return [...previousSelect, { description, value, typeValue }];
     });
-    console.log(selected);
     setCards((previousCard) => {
       return [...previousCard, { description, value, typeValue }];
     });
-    console.log(cards);
     setDescription("");
     setValue("");
-    setTypeValue("");
-    notify(`Adicionado ${typeValue} de ${value} com sucesso!`);
+    notify(
+      `Adicionado ${typeValue} de R$${parseInt(value)
+        .toFixed(2)
+        .replace(".", ",")} com sucesso!`
+    );
   };
 
   const handleInput = (value) => {
-    console.log(value);
     const cardsFiltereds = cards.filter(
       (elem) => elem.typeValue === value || value === "Todos"
     );
-    console.log(cardsFiltereds);
     setSelected(cardsFiltereds);
   };
 
   const remove = (id) => {
     const cardsFiltereds = cards.filter((elem, index) => id !== index);
-    console.log(cardsFiltereds);
     setCards(cardsFiltereds);
     setSelected(cardsFiltereds);
-    notify("Removido com Sucesso!");
+    error("Removido com Sucesso!");
   };
 
   const notify = (message) => {
     toast.success(message, {
-      position: "top-center",
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const error = (message) => {
+    toast.error(message, {
+      position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -111,26 +121,12 @@ const HomePage = ({ setRendle }) => {
                   <select
                     className="inptut-global"
                     onChange={(event) => setTypeValue(event.target.value)}
-                    value={typeValue}
+                    defaultValue={typeValue}
+                    required="true"
                   >
-                    <option
-                      value=""
-                      onChange={(event) => setTypeValue(event.target.value)}
-                    >
-                      Selecione o tipo
-                    </option>
-                    <option
-                      value="Entrada"
-                      onChange={(event) => setTypeValue(event.target.value)}
-                    >
-                      Entrada
-                    </option>
-                    <option
-                      value="Saída"
-                      onChange={(event) => setTypeValue(event.target.value)}
-                    >
-                      Saída
-                    </option>
+                    <option value="">Selecione um Tipo</option>
+                    <option value="Entrada">Entrada</option>
+                    <option value="Saída">Saída</option>
                   </select>
                 </div>
               </div>

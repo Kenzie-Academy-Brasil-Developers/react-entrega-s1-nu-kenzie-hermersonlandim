@@ -111,7 +111,7 @@ div.card-finances div div {
 div.card-finances > div {
   margin-top: 1rem;
   padding: 0.7rem;
-
+  animation: showCardList 1s;
   border-left: 5px solid var(--secundary);
   background-color: var(--grey-2);
   border-radius: 5px;
@@ -143,5 +143,16 @@ div.card-finances > div > div > button > img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+}
+
+@keyframes showCardList {
+  0% {
+    opacity: 0;
+    transform: translate(50%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }
